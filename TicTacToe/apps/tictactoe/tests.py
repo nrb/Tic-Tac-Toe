@@ -7,17 +7,28 @@ Replace these with more appropriate tests for your application.
 
 from django.test import TestCase
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+from TicTacToe.apps.tictactoe.models import Game
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
 
->>> 1 + 1 == 2
-True
-"""}
+class GameTest(TestCase):
+    def setUp(self):
+        self.g = Game()
 
+    def test_matrix_list(self):
+        '''
+        Make sure that the matrix is initialized correctly.
+        '''
+        self.assertEqual([['-', '-', '-']] * 3, self.g.matrix)
+
+    def test_marking(self):
+        '''
+        '''
+        self.g.mark(0,0, 'x')
+        self.g.mark(2,2, 'o')
+
+        self.assertEqual('x', self.g.matrix[0][0])
+        self.assertEqual('o', self.g.matrix[2][2])
+
+    def test_failing_marks(self):
+        self.assertRaises(ValueError, self.g.mark, 0, 0, 'a')
+        self.assertRaises(ValueError, self.g.mark, 2, 2, 'b')
