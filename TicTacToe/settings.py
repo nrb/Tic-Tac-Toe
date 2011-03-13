@@ -1,5 +1,9 @@
 # Django settings for TicTacToe project.
 
+import os.path
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -93,4 +97,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    
+    'apps.tictactoe',
 )
