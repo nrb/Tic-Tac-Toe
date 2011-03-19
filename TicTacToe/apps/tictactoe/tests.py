@@ -12,7 +12,7 @@ from TicTacToe.apps.tictactoe.models import Game
 
 class GameTest(TestCase):
     def setUp(self):
-        self.g = Game()
+        self.g = Game(test=True)
 
     def test_matrix_list(self):
         '''
@@ -39,6 +39,8 @@ class GameTest(TestCase):
         self.assertEqual(self.g.players_turn, 'o')
 
     def test_no_double_turn(self):
+        # Disable testing mode, since it blocks the exception.
+        self.g.test = False
         self.g.mark(0,0,'x')
         self.assertRaises(Game.IllegalMove, self.g.mark, 0, 1, 'x')
 
@@ -49,3 +51,4 @@ class GameTest(TestCase):
         self.g.mark(0, 0, 'x')
         self.g.mark(0, 0, 'o')
         self.assertEqual(self.g.matrix[0][0], 'x')
+

@@ -6,12 +6,14 @@ class Game(object):
     between requests.
     '''
 
-    def __init__(self):
+    def __init__(self, test=False):
         # Create a 3 x 3 matrix that we use as the markers.
         self.matrix = [['-', '-', '-']] * 3
 
         # The computer will always be x, and always start first.
         self.players_turn = 'x'
+
+        self.test = test
 
     def mark(self, row, column, character):
         '''
@@ -23,7 +25,7 @@ class Game(object):
         if character not in ['x', 'o']:
             raise ValueError, "Character's value should be either x or o."
         
-        if character != self.players_turn:
+        if character != self.players_turn and not self.test:
             raise self.IllegalMove
 
         # Make sure we're marking only blank cells.
