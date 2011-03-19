@@ -41,3 +41,11 @@ class GameTest(TestCase):
     def test_no_double_turn(self):
         self.g.mark(0,0,'x')
         self.assertRaises(Game.IllegalMove, self.g.mark, 0, 1, 'x')
+
+    def test_no_overwrite_marks(self):
+        '''No cell should be overwritten if it already contains
+        a player mark.'''
+
+        self.g.mark(0, 0, 'x')
+        self.g.mark(0, 0, 'o')
+        self.assertEqual(self.g.matrix[0][0], 'x')
