@@ -37,3 +37,7 @@ class GameTest(TestCase):
         self.g.mark(0,0,'x')
 
         self.assertEqual(self.g.players_turn, 'o')
+
+    def test_no_double_turn(self):
+        self.g.mark(0,0,'x')
+        self.assertRaises(Game.IllegalMove, self.g.mark, 0, 1, 'x')

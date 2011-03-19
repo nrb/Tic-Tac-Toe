@@ -22,6 +22,9 @@ class Game(object):
         '''
         if character not in ['x', 'o']:
             raise ValueError, "Character's value should be either x or o."
+        
+        if character != self.players_turn:
+            raise self.IllegalMove
 
         # Make sure we're marking only blank cells.
         if self.matrix[row][column] == '-':
@@ -76,4 +79,6 @@ class Game(object):
     
     def retart(self):
         pass
-
+    
+    class IllegalMove(Exception):
+        pass
