@@ -32,3 +32,8 @@ class GameTest(TestCase):
     def test_failing_marks(self):
         self.assertRaises(ValueError, self.g.mark, 0, 0, 'a')
         self.assertRaises(ValueError, self.g.mark, 2, 2, 'b')
+
+    def test_turn_toggle(self):
+        self.g.mark(0,0,'x')
+
+        self.assertEqual(self.g.players_turn, 'o')

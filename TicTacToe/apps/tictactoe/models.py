@@ -10,6 +10,9 @@ class Game(object):
         # Create a 3 x 3 matrix that we use as the markers.
         self.matrix = [['-', '-', '-']] * 3
 
+        # The computer will always be x, and always start first.
+        self.players_turn = 'x'
+
     def mark(self, row, column, character):
         '''
         Tag the cell that the player marked with their character.
@@ -23,7 +26,14 @@ class Game(object):
         # Make sure we're marking only blank cells.
         if self.matrix[row][column] == '-':
             self.matrix[row][column] = character
+            
+            # Switch player's turn.
+            if self.players_turn == 'x':
+                self.players_turn = 'o'
+            else:
+                self.players_turn = 'x'
         else:
+
             return
 
     def check_win_conditions(self):
