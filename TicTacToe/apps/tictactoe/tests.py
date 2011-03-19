@@ -52,3 +52,9 @@ class GameTest(TestCase):
         self.g.mark(0, 0, 'o')
         self.assertEqual(self.g.matrix[0][0], 'x')
 
+    def test_horizontal_win_conditions(self):
+        for cell in xrange(0,3):
+            self.g.mark(0, cell, 'x')
+
+        self.assertEqual(self.g.check_win_conditions(), 'x')
+
