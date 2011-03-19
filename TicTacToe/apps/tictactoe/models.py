@@ -60,11 +60,15 @@ class Game(object):
 
         # Pivot matrix to check columns in a more readable way
         # To do so, initiate another blank game board.
-        pivoted_matrix = [['-', '-', '-']] * 3
-        for column in xrange(0, 3):
-            for row in matrix:
+        # This one is layed out explicitly; using the multi-
+        # plication method results in 3 references to 1 list.
+        pivoted_matrix = [['-', '-', '-'],
+                          ['-', '-', '-'],
+                          ['-', '-', '-']]
+        for row in xrange(0, 3):
+            for column in xrange(0, 3):
                 # Invert the column and rows to do the pivot
-                pivoted_matrix[column][row] = matrix[row][column]
+                pivoted_matrix[column][row] = self.matrix[row][column]
 
         # Check the newly pivoted board.
         for row in pivoted_matrix:

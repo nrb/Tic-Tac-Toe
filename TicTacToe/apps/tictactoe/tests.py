@@ -58,3 +58,9 @@ class GameTest(TestCase):
 
         self.assertEqual(self.g.check_win_conditions(), 'x')
 
+    def test_vertical_win_conditions(self):
+        for row in xrange(0,3):
+            self.g.mark(row, 1, 'x')
+
+        self.assertEqual(self.g.check_win_conditions(), 'x', self.g.matrix)
+
